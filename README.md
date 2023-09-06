@@ -77,6 +77,16 @@ In order to complete this project, you must fix the following modules:
 - The async action creators are marked as such.
 - Don't install new npm dependencies or upgrade existing ones.
 
+### Implementation Notes
+
+- Start implementation at state and reducers and actions
+- Complete all behavior for:
+  [] messages
+  [] wheel
+  [] quiz
+  [] form
+- Import all necessary action-creators and stores to cooresponding components
+
 ## MVP Short Explanation
 
 ❗ ALL TESTS MUST PASS
