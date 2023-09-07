@@ -2,10 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { moveClockwise, moveCounterClockwise } from '../state/action-creators';
 
-//get state from store for dynamic value of div cog
-//get action creators to dispatch actions from buttons
-//toggle active class with ternary conditional
-
 export default function Wheel() {
   const wheel = useSelector((state) => state.wheel);
   const dispatch = useDispatch();
