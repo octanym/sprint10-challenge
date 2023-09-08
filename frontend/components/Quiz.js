@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAnswer, fetchQuiz } from '../state/action-creators';
 
 export default function Quiz() {
+  const selectedAnswer = useSelector((state) => state.selectedAnswer);
   const quiz = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
-
-  console.log(quiz);
 
   useEffect(() => {
     dispatch(fetchQuiz());
@@ -18,17 +17,45 @@ export default function Quiz() {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
         quiz ? (
           <>
-            <h2>What is a closure?</h2>
+            <h2>{quiz.data.question}</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
-                A function
-                <button>SELECTED</button>
+              <div
+                className={
+                  selectedAnswer === quiz.data.answers[0].answer_id
+                    ? 'answer selected'
+                    : 'answer'
+                }
+              >
+                {quiz.data.answers[0].text}
+                <button
+                  onClick={() =>
+                    dispatch(selectAnswer(quiz.data.answers[0].answer_id))
+                  }
+                >
+                  {selectedAnswer === quiz.data.answers[0].answer_id
+                    ? 'SELECTED'
+                    : 'selected'}
+                </button>
               </div>
 
-              <div className="answer">
-                An elephant
-                <button>Select</button>
+              <div
+                className={
+                  selectedAnswer === quiz.data.answers[1].answer_id
+                    ? 'answer selected'
+                    : 'answer'
+                }
+              >
+                {quiz.data.answers[1].text}
+                <button
+                  onClick={() =>
+                    dispatch(selectAnswer(quiz.data.answers[1].answer_id))
+                  }
+                >
+                  {selectedAnswer === quiz.data.answers[1].answer_id
+                    ? 'SELECTED'
+                    : 'selected'}
+                </button>
               </div>
             </div>
 
