@@ -59,7 +59,9 @@ export default function Quiz() {
               </div>
             </div>
 
-            <button id="submitAnswerBtn">Submit answer</button>
+            <button disabled={!selectedAnswer} id="submitAnswerBtn">
+              Submit answer
+            </button>
           </>
         ) : (
           'Loading next quiz...'
