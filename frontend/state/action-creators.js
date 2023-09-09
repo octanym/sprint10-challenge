@@ -49,9 +49,18 @@ export function fetchQuiz() {
     });
   };
 }
-export function postAnswer() {
+export function postAnswer(data) {
   return function (dispatch) {
+    const answer = {
+      quiz_id: data.quiz_id,
+      answer_id: data.selectedAnswer,
+    };
     // On successful POST:
+    axios.post('http://localhost:9000/api/quiz/answer', answer).then((res) => {
+      dispatch(selectAnswer(null));
+      dispatch(setMessage(res.data.message));
+      dispatch(fetchQuiz());
+    });
     // - Dispatch an action to reset the selected answer state
     // - Dispatch an action to set the server message to state
     // - Dispatch the fetching of the next quiz
