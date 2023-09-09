@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAnswer, fetchQuiz } from '../state/action-creators';
+import { postAnswer, selectAnswer, fetchQuiz } from '../state/action-creators';
 
 export default function Quiz() {
-  const selectedAnswer = useSelector((state) => state.selectedAnswer);
-  const quiz = useSelector((state) => state.quiz);
   const dispatch = useDispatch();
+  const quiz = useSelector((state) => state.quiz);
+  const selectedAnswer = useSelector((state) => state.selectedAnswer);
+
+  let quiz_id = quiz?.data?.quiz_id;
 
   useEffect(() => {
     dispatch(fetchQuiz());
@@ -59,7 +61,11 @@ export default function Quiz() {
               </div>
             </div>
 
-            <button disabled={!selectedAnswer} id="submitAnswerBtn">
+            <button
+              onClick={() => dispatch(postAnswer({ quiz_id, selectedAnswer }))}
+              disabled={!selectedAnswer}
+              id="submitAnswerBtn"
+            >
               Submit answer
             </button>
           </>
