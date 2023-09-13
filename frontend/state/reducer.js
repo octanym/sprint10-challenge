@@ -55,7 +55,6 @@ function infoMessage(state = initialMessageState, action) {
     default:
       return state;
   }
-  return state;
 }
 
 const initialFormState = {
