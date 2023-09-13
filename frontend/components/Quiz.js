@@ -10,7 +10,9 @@ export default function Quiz() {
   let quiz_id = quiz?.data?.quiz_id;
 
   useEffect(() => {
-    dispatch(fetchQuiz());
+    if (!quiz) {
+      dispatch(fetchQuiz(quiz));
+    }
   }, []);
 
   return (
