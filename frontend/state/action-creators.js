@@ -66,9 +66,21 @@ export function postAnswer(data) {
     // - Dispatch the fetching of the next quiz
   };
 }
-export function postQuiz() {
+export function postQuiz(data) {
   return function (dispatch) {
+    const quiz = {
+      question_text: data.newQuestion,
+      true_answer_text: data.newTrueAnswer,
+      false_answer_text: data.newFalseAnswer,
+    };
     // On successful POST:
+    axios.post('http://localhost:9000/api/quiz/new', quiz).then((res) => {
+      console.log(res);
+      dispatch(
+        setMessage(`Congrats: "${res.data.question}" is a great question!`)
+      );
+      dispatch(resetForm());
+    });
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
   };
